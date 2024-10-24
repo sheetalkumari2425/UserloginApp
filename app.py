@@ -21,6 +21,32 @@ class Myntra:
         else:
             sys.exit(1000)
             
+    def register(self):
+        name = input("Enter the name")
+        email = input("Enter the email")
+        password = input("Enter the password")
+        response = self.db.register(name, email, password)
+        if response:
+            print("Registration successful")
+        else:
+            print("Registration failed")
+        self.menu()
+        
+    def login(self):
+        email = input("Enter email")
+        password = input("Enter password")
+        data = self.db.search(email, password)
+        if len(data) == 0:
+            print("Incorrect email/password")
+            self.login()
+        else:
+            print("Hello", data[0][1])
+        
+        
+
+    
+obj = Myntra()
+            
     
         
         
